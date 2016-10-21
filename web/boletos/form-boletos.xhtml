@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>#{str.ticketFrom}</title>
+                       </h:head>
+        <h:body>
+            <ui:composition template="/templates/template.xhtml" >
+                <ui:define name="contenido" >
+                    <h2>#{str.ticketFormHeader}</h2>
+                    <p:fieldset legend="#{str.ticketLegendForm}" >
+                    <h:form>
+                        <h:panelGrid columns="1">
+                            <p:inputText placeholder="#{str.ticketEntry}" value="#{boletoBean.boleto.entrada}" ></p:inputText>
+                            <p:inputText placeholder="#{str.ticketPreference}" value="#{boletoBean.boleto.preferencia}" ></p:inputText>
+                            <p:inputText placeholder="#{str.ticketSit}" value="#{boletoBean.boleto.asiento}"  ></p:inputText> 
+                            <p:selectOneMenu value="#{boletoBean.boleto.concierto.idConcierto}" >
+                                <f:selectItems value="#{boletoBean.conciertos}" var="c" itemLabel="#{c.cantante}" itemValue="#{c.idConcierto}" ></f:selectItems>
+                            </p:selectOneMenu>
+                            <p:selectOneMenu value="#{boletoBean.boleto.fan.idFan}" >
+                                <f:selectItems value="#{boletoBean.fans}" var="f" itemLabel="#{f.nombreFan}" itemValue="#{f.idFan}" ></f:selectItems>
+                            </p:selectOneMenu>
+                        </h:panelGrid>
+                        <p:commandButton value="#{str.buttonSave}"  action="#{boletoBean.guardar()}" ></p:commandButton>
+                        <p:commandButton value="#{str.buttonDelete}" action="#{boletoBean.eliminar()}" ></p:commandButton>
+                        <p:commandButton value="#{str.buttonCancel}" action="#{boletoBean.cancelar()}" ></p:commandButton>
+                    </h:form>
+                    </p:fieldset>
+                </ui:define>
+            </ui:composition>
+    </h:body>
+</html>
