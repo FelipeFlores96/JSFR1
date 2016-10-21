@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>#{str.concertListTitle}</title>
+
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="contenido">
+                <h1>#{str.concertListTitle}</h1>
+                <h:form>
+                    <p:commandButton value="#{str.buttonAdd}" 
+                                     action="#{conciertoBean.iniciar()}" ></p:commandButton>
+                </h:form>
+                <p:dataTable value="#{conciertoBean.conciertos}" var="c" >
+                    <p:column headerText="#{str.action}">
+                        <h:form>
+                            <p:commandButton value="#{str.buttonEdit}" 
+                                             action="#{conciertoBean.editar(c)}" ></p:commandButton>
+                        </h:form>
+                    </p:column>
+                    <p:column headerText="#{str.concertSinger}">
+                        <p:outputLabel value="#{c.cantante}"></p:outputLabel>                        
+                    </p:column>
+                    <p:column headerText="#{str.concertLocation}">
+                        <p:outputLabel value="#{c.lugar}"></p:outputLabel>
+                    </p:column>
+                    <p:column headerText="#{str.concertSize}">
+                        <p:outputLabel value="#{c.tamano}"></p:outputLabel>
+                    </p:column>
+                </p:dataTable>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
